@@ -1,0 +1,11 @@
+"""
+Celery configuration for InsightFlow.
+"""
+import os
+from celery import Celery
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'insightflow.settings')
+
+app = Celery('insightflow')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()
